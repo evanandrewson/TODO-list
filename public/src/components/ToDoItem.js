@@ -1,6 +1,7 @@
 import Component from './Component.js';
 
 class ToDoItem extends Component {
+
     onRender(dom) {
         const todo = this.props.todo;
         const onUpdate = this.props.onUpdate;
@@ -15,7 +16,7 @@ class ToDoItem extends Component {
         const todo = this.props.todo;
 
         return /*html*/`
-        <li class="cat-type">
+        <li class="to-do">
             <span class="${todo.completed ? 'inactive' : ''}">${todo.item}</span>
             <div>
                 <button class="inactive-button">

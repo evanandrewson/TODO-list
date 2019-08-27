@@ -1,0 +1,14 @@
+.to-do {
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inactive {
+    text-decoration: line-through;
+}
+
+span {
+    margin: 1rem;
+}

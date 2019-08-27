@@ -2,6 +2,7 @@ import Component from './Component.js';
 import Header from './Header.js';
 import ToDoList from './ToDoList.js';
 import { getToDos, addToDo, updateToDo } from '../services/to-do-api.js';
+import ToDoForm from './ToDoForm.js';
 
 class ToDoApp extends Component {
     onRender(dom) {
@@ -9,6 +10,18 @@ class ToDoApp extends Component {
         dom.prepend(header.renderDOM());
 
         const main = dom.querySelector('main');
+
+        const toDoForm = new ToDoForm({
+            onAdd: todo => {
+                return addToDo(todo)
+                    .then(saved => {
+                        const todos = this.state.todos;
+                        todos.push(saved);
+                        toDoList.update({ todos });
+                    });
+            }
+        });
+        main.appendChild(toDoForm.renderDOM());
 
         const toDoList = new ToDoList({
             todos: [],

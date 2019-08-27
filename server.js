@@ -58,8 +58,8 @@ app.put('/api/todos/:id', (req, res) => {
 
     client.query(`
         UPDATE todo
-        SET    name = $2,
-               inactive = $3
+        SET    item = $2,
+               completed = $3
         WHERE  id = $1
         RETURNING *;
     `,
