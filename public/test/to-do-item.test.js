@@ -13,7 +13,7 @@ test('render to do item', assert => {
     };
     const expected = `
     <li class="to-do">
-        <span class="''">do laundry</span>
+        <span class="\">do laundry</span>
         <div>
             <button class="inactive-button">
                 Make Inactive
