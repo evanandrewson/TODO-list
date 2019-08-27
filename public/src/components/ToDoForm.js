@@ -19,6 +19,7 @@ class ToDoForm extends Component {
                     form.reset();
                 })
                 .catch(err => {
+                    // eslint-disable-next-line no-console
                     console.log(err);
                 });
         });

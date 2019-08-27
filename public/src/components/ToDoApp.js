@@ -45,6 +45,7 @@ class ToDoApp extends Component {
                 toDoList.update({ todos });
             })
             .catch(err => {
+                // eslint-disable-next-line no-console
                 console.log(err);
             });
     }

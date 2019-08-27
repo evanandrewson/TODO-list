@@ -13,6 +13,7 @@ test('render to do item', assert => {
     };
     const expected = `
     <li class="to-do">
+        // eslint-disable-next-line no-useless-escape
         <span class="\">do laundry</span>
         <div>
             <button class="inactive-button">
