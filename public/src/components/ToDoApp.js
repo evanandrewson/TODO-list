@@ -1,10 +1,39 @@
 import Component from './Component.js';
 import Header from './Header.js';
+import ToDoList from './ToDoList.js';
+import { getToDos, addToDo, updateToDo } from '../services/to-do-api.js';
 
 class ToDoApp extends Component {
     onRender(dom) {
         const header = new Header();
         dom.prepend(header.renderDOM());
+
+        const main = dom.querySelector('main');
+
+        const toDoList = new ToDoList({
+            todos: [],
+            onUpdate: todo => {
+                return updateToDo(todo)
+                    .then(updated => {
+                        const todos = this.state.todos;
+
+                        const index = todos.indexOf(todo);
+                        todos.splice(index, 1, updated);
+
+                        toDoList.update({ todos });
+                    });
+            }
+        });
+        main.appendChild(toDoList.renderDOM());
+
+        getToDos()
+            .then(todos => {
+                this.state.todos = todos;
+                toDoList.update({ todos });
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     renderHTML() {
