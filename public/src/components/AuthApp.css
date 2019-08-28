@@ -1,0 +1,17 @@
+form {
+    width: 400px;
+    margin: auto;
+}
+
+button {
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.errors {
+    font-family: monospace;
+    color: red;
+}
