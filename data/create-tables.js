@@ -8,6 +8,11 @@ client.connect()
                 item VARCHAR(256) NOT NULL,
                 completed BOOLEAN NOT NULL DEFAULT FALSE
             );
+            CREATE TABLE users (
+                id SERIAL PRIMARY KEY,
+                email VARCHAR(256) NOT NULL,
+                hash VARCHAR(512) NOT NULL
+            );
     `);
     })
     .then(
