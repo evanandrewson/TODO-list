@@ -10,6 +10,7 @@ client.connect()
             );
             CREATE TABLE todo (
                 id SERIAL PRIMARY KEY NOT NULL,
+                user_id INTEGER REFERENCES users(id),
                 item VARCHAR(256) NOT NULL,
                 completed BOOLEAN NOT NULL DEFAULT FALSE
             );

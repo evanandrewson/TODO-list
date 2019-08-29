@@ -52,11 +52,14 @@ app.get('/api/todos', (req, res) => {
     client.query(`
         SELECT
             id,
+            user_id,
             item,
             completed
         FROM todo
+        WHERE user_id = $1
         ORDER BY item;
-    `)
+    `,
+    [req.userId])
         .then(result => {
             res.json(result.rows);
         })
@@ -70,11 +73,11 @@ app.get('/api/todos', (req, res) => {
 app.post('/api/todos', (req, res) => {
     const todo = req.body;
     client.query(`
-        INSERT INTO todo (item)
-        VALUES ($1)
+        INSERT INTO todo (item, user_id)
+        VALUES ($1, $2)
         RETURNING *;
     `,
-    [todo.item]
+    [todo.item, req.userId]
     )
         .then(result => {
             res.json(result.rows[0]);
@@ -95,9 +98,10 @@ app.put('/api/todos/:id', (req, res) => {
         SET    item = $2,
                completed = $3
         WHERE  id = $1
+        AND user_id = $4
         RETURNING *;
     `,
-    [id, todo.item, todo.completed]
+    [id, todo.item, todo.completed, req.userId]
     )
         .then(result => {
             res.json(result.rows[0]);
