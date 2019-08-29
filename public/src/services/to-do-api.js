@@ -6,7 +6,7 @@ const token = store.getToken();
 if(!token && location.pathname !== '/auth.html') {
     const searchParams = new URLSearchParams();
     searchParams.set('redirect', location.pathname);
-    location = `auth.html?${searchParams.toString()}`;
+    location = `/auth.html`;
 }
 
 function fetchWithError(url, options) {
